@@ -79,7 +79,7 @@ public class Sandwich {
     }
 
     public int getExtraCheese() {
-        return extraCheese;
+        return this.extraCheese;
     }
 
     public void setExtraCheese(int extraCheese) {
@@ -98,52 +98,18 @@ public class Sandwich {
     }
 
     public double calculatePrice() {
-        double price = 0.0;
+        return 0;
+    }
 
-        switch (size) {
-            case "4\"":
-                price += 5.50;
-                break;
-            case "8\"":
-                price += 7.00;
-                break;
-            case "12\"":
-                price = +8.50;
-                break;
-        }
+    public void addCheese(String cheese) {
+    }
 
-        double meatPrice = switch (size) {
-            case "4\"" -> 1.00;
-            case "8\"" -> 2.00;
-            case "12\"" -> 3.00;
-            default -> 0.0;
-        };
-        price += meat.size() * meatPrice;
-        double extraMeatPrice = switch (size) {
-            case "4\"" -> 0.50;
-            case "8\"" -> 1.00;
-            case "12\"" -> 1.50;
-            default -> 0.0;
-        };
-        price += extraMeat * extraMeatPrice;
+    public void addMeat(int extraMeat) {
+    }
 
-        double cheesePrice = switch (size) {
-            case "4\"" -> 0.75;
-            case "8\"" -> 1.50;
-            case "12\"" -> 2.25;
-            default -> 0.0;
-        };
-        price += cheese.size() * cheesePrice;
+    public void addToppings(String toppings) {
+    }
 
-        double extraCheesePrice = switch (size) {
-            case "4\"" -> 0.30;
-            case "8\"" -> 0.60;
-            case "12\"" -> 0.90;
-            default -> 0.0;
-        };
-        price += extraCheese * extraCheesePrice;
-
-
-        return price;
+    public void addSauce(String sauce) {
     }
 }
