@@ -8,7 +8,7 @@ public class Order {
     private Drink drink;
     private Chips chips;
 
-    public Order(List<Sandwich> sandwiches, Drink drink, Chips chips) {
+    public Order(String sandwiches, String drink, String chips) {
         this.sandwiches = sandwiches;
         this.drink = drink;
         this.chips = chips;
