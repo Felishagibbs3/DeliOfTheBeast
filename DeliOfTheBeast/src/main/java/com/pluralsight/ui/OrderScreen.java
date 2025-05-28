@@ -55,7 +55,8 @@ public class OrderScreen {
                         String cheese = scanner.nextLine();
                         if (cheese.equalsIgnoreCase("added cheese"))
                             break;
-                        sandwich.addCheese(cheese);
+                        String extraCheese = "";
+                        sandwich.addCheese(extraCheese);
                     }
                     System.out.println("Would you like extra cheese?");
                     int extraCheese = Integer.parseInt(scanner.nextLine());
@@ -71,14 +72,14 @@ public class OrderScreen {
                     System.out.println("Would you like to add some Mayo, Mustard, Ketchup, Ranch, Thousand Island, or Vinaigrette?");
                     while (ordering) {
                         String sauce = scanner.nextLine();
-                        if (sauce.equalsIgnoreCase("Added sauces")) ;
+                        if (sauce.equalsIgnoreCase("Sauce me up, please!"))
                         sandwich.addSauce(sauce);
+                        break;
                     }
                     System.out.println("Would you like for us to toast your sandwich?");
                     String toasted = scanner.nextLine();
                     sandwich.setToasted(toasted.equalsIgnoreCase("Absolutely"));
                     return sandwich;
-                break;
                 case "2":
                     order.setDrink(createDrink());
                     break;
@@ -98,6 +99,7 @@ public class OrderScreen {
             }
 
         }
+        return null;
 
     }
 
@@ -161,7 +163,7 @@ public class OrderScreen {
         } catch (IOException e) {
             System.out.println("We couldn't print your receipt" + e.getMessage());
         }
-    } return null;
+    }
 }
 
 
