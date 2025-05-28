@@ -164,6 +164,9 @@ public class OrderScreen {
             System.out.println("We couldn't print your receipt" + e.getMessage());
         }
     }
+
+    public String totalPrice() {
+    }
 }
 
 
