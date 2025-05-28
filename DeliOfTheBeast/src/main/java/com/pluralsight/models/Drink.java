@@ -6,7 +6,7 @@ public class Drink {
     private String flavor;
     private double price;
 
-    public Drink(String size, String flavor, double price) {
+    public Drink(String size) {
         this.size = size;
         this.flavor = flavor;
         this.price = price;
