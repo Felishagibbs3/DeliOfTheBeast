@@ -42,43 +42,57 @@ public class OrderScreen {
                     System.out.println("Would you like Steak, Ham, Salami, Roast Beef, Chicken, or Bacon as your meat?");
                     while (ordering) {
                         String meat = scanner.nextLine();
-                        if (meat.equalsIgnoreCase("done"))
-                            break;
-                        sandwich.addMeat(meat);
+                        order.addSandwich(sandwich);
+                        break;
                     }
-                    System.out.println("Would you like to add extra meat?");
-                    int extraMeat = Integer.parseInt(scanner.nextLine());
-                    sandwich.addMeat(extraMeat);
+                    System.out.println("How about extras? (type 'done' when finished or to skip):");
+                    while (true) {
+                        String extraMeat = scanner.nextLine();
+                        if (extraMeat.equalsIgnoreCase("done"))
+                            break;
+                        sandwich.addExtraMeat(extraMeat);
+                    }
+
 
                     System.out.println("Let's add some cheese. Would you like American, Provolone, Cheddar, or Swiss?");
                     while (ordering) {
                         String cheese = scanner.nextLine();
-                        if (cheese.equalsIgnoreCase("added cheese"))
-                            break;
-                        String extraCheese = "";
-                        sandwich.addCheese(extraCheese);
+                        sandwich.addCheese(cheese);
+                        break;
                     }
-                    System.out.println("Would you like extra cheese?");
-                    int extraCheese = Integer.parseInt(scanner.nextLine());
-                    sandwich.getExtraCheese();
+                    System.out.println("Would you like extra cheese? (Add extras and type 'done' when finished or to skip):");
+                    while (true) {
+                        String extraCheese = scanner.nextLine();
+                        if (extraCheese.equalsIgnoreCase("done"))
+                            break;
+                        sandwich.addExtraCheese(extraCheese);  // assuming you have this method
+                    }
 
-                    System.out.println("Let's add some toppings now. What topping would you like? We have Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Picles, Guac, or Mushrooms?");
+
+                    System.out.println("Let's add some toppings now. What topping would you like?");
+                    System.out.println("We have Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guac, or Mushrooms?");
                     while (ordering) {
                         String toppings = scanner.nextLine();
-                        if (toppings.equalsIgnoreCase("Added toppings"))
-                            break;
                         sandwich.addToppings(toppings);
+                        break;
                     }
                     System.out.println("Would you like to add some Mayo, Mustard, Ketchup, Ranch, Thousand Island, or Vinaigrette?");
                     while (ordering) {
                         String sauce = scanner.nextLine();
-                        if (sauce.equalsIgnoreCase("Sauce me up, please!"))
+                        if (sauce.equalsIgnoreCase("Done"))
+                            break;
                         sandwich.addSauce(sauce);
-                        break;
+
                     }
                     System.out.println("Would you like for us to toast your sandwich?");
                     String toasted = scanner.nextLine();
-                    sandwich.setToasted(toasted.equalsIgnoreCase("Absolutely"));
+
+
+                    System.out.println("Current total:  $" + order.totalPrice());
+                    boolean yes = true;
+                    if (yes){
+                         order.addSandwich(sandwich);
+                    }
                     return sandwich;
                 case "2":
                     order.setDrink(createDrink());
@@ -121,7 +135,7 @@ public class OrderScreen {
     private Chips createChips() {
         System.out.println("Would you like to add some Lays or Doritos with that?");
         String chips = scanner.nextLine();
-        return new Chips("");
+        return new Chips(chips);
     }
 
     private Drink createDrink() {
@@ -130,7 +144,7 @@ public class OrderScreen {
         System.out.println("Would you like a Small, Medium, or Large Drink?");
         String size = scanner.nextLine();
 
-        return new Drink(size + flavor);
+        return new Drink(size, flavor);
     }
 
     private void createReceipt(Order order) {
@@ -139,12 +153,12 @@ public class OrderScreen {
 
 
             for (Sandwich s : order.getSandwiches()) {
-                receipt.write("  Meat: " + s.getMeat());
-                receipt.write(" Cheese " + s.getCheese());
-                receipt.write(" Extras: " + s.getExtraMeat() + s.getExtraCheese());
-                receipt.write(" Toppings:  " + s.getToppings());
-                receipt.write(" Sauces:  " + s.getSauce());
-                receipt.write(" Toasted: " + s.isToasted() + "Yes :  No");
+                receipt.write("  Meat: " + s.getMeat() + "\n");
+                receipt.write(" Cheese " + s.getCheese() + "\n");
+                receipt.write(" Extras: " + s.getExtraMeat() + s.getExtraCheese() + "\n");
+                receipt.write(" Toppings:  " + s.getToppings() + "\n");
+                receipt.write(" Sauces:  " + s.getSauce() + "\n");
+                receipt.write(" Toasted: " + s.isToasted() + "Yes :  No" + "\n");
                 receipt.write(" Total Price :  $" + s.calculatePrice());
 
             }
@@ -160,13 +174,13 @@ public class OrderScreen {
             System.out.println("Thank you for eating at Deli of the Beast!");
 
 
+
+
         } catch (IOException e) {
             System.out.println("We couldn't print your receipt" + e.getMessage());
         }
     }
 
-    public String totalPrice() {
-    }
 }
 
 

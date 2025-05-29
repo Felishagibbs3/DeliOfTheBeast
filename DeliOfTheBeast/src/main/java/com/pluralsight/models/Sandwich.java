@@ -113,8 +113,11 @@ public class Sandwich {
     public void addSauce(String sauce) {
     }
 
-    public void extraCheese(String extraCheese){
 
+    public void addExtraMeat(String extraMeat) {
+    }
+
+    public void addExtraCheese(String extraCheese) {
     }
 }
 
