@@ -137,13 +137,14 @@ public class OrderScreen {
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Yes")) {
             createReceipt(order);
-            System.out.println("Order Received. We are printing your receipt");
+
         } else {
             System.out.println("Order has been canceled");
         }
 
+
         System.out.println("Your total is:  $" + total);
-        System.out.println("Thank you for Feasting at the Deli of the Feast!");
+        System.out.println("Thank you for Feasting at the Deli of the Beast!");
         System.out.println("See you next time!");
 
     }
@@ -188,7 +189,6 @@ public class OrderScreen {
             }
             receipt.write("Total:  " + order.totalPrice());
 
-            System.out.println("Thank you for eating at Deli of the Beast!");
 
 
 
