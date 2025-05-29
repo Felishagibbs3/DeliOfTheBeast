@@ -18,8 +18,8 @@ public class OrderScreen {
 
         boolean ordering = true;
         while (ordering) {
-            System.out.println("----- Let's Start Your Order ----");
-            System.out.println(" Select your option ");
+            System.out.println("----- Order Screen ----");
+            System.out.println(" Let's Build Your Feast ");
             System.out.println(" 1. Sandwich ");
             System.out.println(" 2. Add Drink ");
             System.out.println(" 3. Add Chips ");
@@ -27,78 +27,21 @@ public class OrderScreen {
             System.out.println(" 0. Cancel my Order ");
 
             String choice = scanner.nextLine();
-            Sandwich sandwich;
 
             switch (choice) {
                 case "1":
-                    System.out.println("Would you like White, Wheat, Rye, or a Wrap?");
-                    String bread = scanner.nextLine();
-
-                    System.out.println("Got It! Would you like a 4\"/8\"/12\"?):  ");
-                    String size = scanner.nextLine();
-
-                    sandwich = new Sandwich(bread, size);
-
-                    System.out.println("Would you like Steak, Ham, Salami, Roast Beef, Chicken, or Bacon as your meat?");
-                    while (ordering) {
-                        String meat = scanner.nextLine();
-                        order.addSandwich(sandwich);
-                        break;
-                    }
-                    System.out.println("How about extras? (type 'done' when finished or to skip):");
-                    while (true) {
-                        String extraMeat = scanner.nextLine();
-                        if (extraMeat.equalsIgnoreCase("done"))
-                            break;
-                        sandwich.addExtraMeat(extraMeat);
-                    }
-
-
-                    System.out.println("Let's add some cheese. Would you like American, Provolone, Cheddar, or Swiss?");
-                    while (ordering) {
-                        String cheese = scanner.nextLine();
-                        sandwich.addCheese(cheese);
-                        break;
-                    }
-                    System.out.println("Would you like extra cheese? (Add extras and type 'done' when finished or to skip):");
-                    while (true) {
-                        String extraCheese = scanner.nextLine();
-                        if (extraCheese.equalsIgnoreCase("done"))
-                            break;
-                        sandwich.addExtraCheese(extraCheese);  // assuming you have this method
-                    }
-
-
-                    System.out.println("Let's add some toppings now. What topping would you like?");
-                    System.out.println("We have Lettuce, Peppers, Onions, Tomatoes, Jalapenos, Cucumbers, Pickles, Guac, or Mushrooms?");
-                    while (ordering) {
-                        String toppings = scanner.nextLine();
-                        sandwich.addToppings(toppings);
-                        break;
-                    }
-                    System.out.println("Would you like to add some Mayo, Mustard, Ketchup, Ranch, Thousand Island, or Vinaigrette?");
-                    while (ordering) {
-                        String sauce = scanner.nextLine();
-                        if (sauce.equalsIgnoreCase("Done"))
-                            break;
-                        sandwich.addSauce(sauce);
-
-                    }
-                    System.out.println("Would you like for us to toast your sandwich?");
-                    String toasted = scanner.nextLine();
-
-
-                    System.out.println("Current total:  $" + order.totalPrice());
-                    boolean yes = true;
-                    if (yes){
-                         order.addSandwich(sandwich);
-                    }
-                    return sandwich;
+                    Sandwich sandwich = buildSandwich();
+                    order.addSandwich(sandwich);
+                    System.out.println("Sandwich has been added! Current Total:  $" + order.totalPrice());
+                    break;
                 case "2":
                     order.setDrink(createDrink());
+                    System.out.println("Thirst has been Quenched! Drink has been added. Current Total:  $" + order.totalPrice());
+
                     break;
                 case "3":
                     order.setChips(createChips());
+                    System.out.println("Lovely Choice! Chips has been added! Current Total:  $" + order.totalPrice());
                     break;
                 case "4":
                     checkOut(order);
@@ -117,6 +60,77 @@ public class OrderScreen {
 
     }
 
+    private Sandwich buildSandwich () {
+        System.out.println("Would you like White, Wheat, Rye, or a Wrap?");
+        String bread = scanner.nextLine();
+
+        System.out.println("Got It! Would you like a 4\"/8\"/12\"?");
+        String size = scanner.nextLine();
+
+        Sandwich sandwich = new Sandwich(bread, size);
+
+        System.out.println("Let's add protein. Which meat would you like?");
+        System.out.println("Steak | Ham | Salami | Roast Beef | Chicken | Bacon");
+        String meat = scanner.nextLine();
+        sandwich.setMeat(meat);
+
+        System.out.println("Add extra meats one at a time (type 'done' to finish or skip):");
+        while (true) {
+            String inputExtra = scanner.nextLine();
+            if (inputExtra.equalsIgnoreCase("done") || inputExtra.equals("0"))
+                break;
+            try {
+                int extraMeat = Integer.parseInt(inputExtra);
+                sandwich.addExtraMeat(extraMeat);
+            } catch (NumberFormatException e) {
+                System.out.println("Enter amount to add and type 'done' when finished or skip.");
+            }
+        }
+
+        System.out.println("Let's add some cheese. Would you like American, Provolone, Cheddar, or Swiss?");
+        String cheese = scanner.nextLine();
+        sandwich.addCheese(cheese);
+
+        System.out.println("Add extra cheeses one at a time (Press 'done' to finish or skip):");
+        while (true) {
+            String inputExtra = scanner.nextLine();
+            if (inputExtra.equalsIgnoreCase("done") || inputExtra.equals("0"))
+                break;
+            try {
+                int extraCheese = Integer.parseInt(inputExtra);
+                sandwich.addExtraCheese(extraCheese);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Enter amount you'd like to add and hit 'done' when finished.");
+            }
+        }
+
+        System.out.println("Let's add some toppings.Type 'done' to finish):");
+        System.out.println("Lettuce | Peppers | Onions | Tomatoes | Jalapenos | Cucumbers | Pickles | Guac | Mushrooms");
+        while (true) {
+            String topping = scanner.nextLine();
+            if (topping.equalsIgnoreCase("done"))
+                break;
+            sandwich.addToppings(topping);
+        }
+
+        System.out.println("Would you like to add a sauce? (type 'done' to finish):");
+        System.out.println("Mayo | Mustard | Ketchup | Ranch | Thousand Island | Vinaigrette");
+        while (true) {
+            String sauce = scanner.nextLine();
+            if (sauce.equalsIgnoreCase("done"))
+                break;
+            sandwich.addSauce(sauce);
+        }
+
+        System.out.println("Would you like us to toast your sandwich? (yes/no)");
+        String toasted = scanner.nextLine();
+        sandwich.setToasted(toasted.equalsIgnoreCase("yes"));
+
+        return sandwich;
+    }
+
+
     private void checkOut(Order order) {
         double total = order.totalPrice();
         System.out.println("Ready to checkout?");
@@ -129,6 +143,8 @@ public class OrderScreen {
         }
 
         System.out.println("Your total is:  $" + total);
+        System.out.println("Thank you for Feasting at the Deli of the Feast!");
+        System.out.println("See you next time!");
 
     }
 
@@ -140,6 +156,7 @@ public class OrderScreen {
 
     private Drink createDrink() {
         System.out.println("Would you like to add a Drink? We have Coke products.");
+        System.out.println("Coke | Orange Fanta | Gold Peak Tea | Sprite | Diet Coke | Dr. Pepper");
         String flavor = scanner.nextLine();
         System.out.println("Would you like a Small, Medium, or Large Drink?");
         String size = scanner.nextLine();
@@ -155,7 +172,7 @@ public class OrderScreen {
             for (Sandwich s : order.getSandwiches()) {
                 receipt.write("  Meat: " + s.getMeat() + "\n");
                 receipt.write(" Cheese " + s.getCheese() + "\n");
-                receipt.write(" Extras: " + s.getExtraMeat() + s.getExtraCheese() + "\n");
+                receipt.write(" Extras - Meat: " + s.getExtraMeat() + ", Cheese: " + s.getExtraCheese() + "\n");
                 receipt.write(" Toppings:  " + s.getToppings() + "\n");
                 receipt.write(" Sauces:  " + s.getSauce() + "\n");
                 receipt.write(" Toasted: " + s.isToasted() + "Yes :  No" + "\n");

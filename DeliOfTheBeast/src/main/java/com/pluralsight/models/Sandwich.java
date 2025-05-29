@@ -7,7 +7,7 @@ public class Sandwich {
     private String bread;
     private String size;
     private boolean toasted;
-    private List<String> meat = new ArrayList<>();
+    private String meat;
     private List<String> cheese = new ArrayList<>();
     private List<String> toppings = new ArrayList<>();
     private List<String> sauce = new ArrayList<>();
@@ -38,11 +38,11 @@ public class Sandwich {
         this.toasted = toasted;
     }
 
-    public List<String> getMeat() {
+    public String getMeat() {
         return meat;
     }
 
-    public void setMeat(List<String> meat) {
+    public void setMeat(String meat) {
         this.meat = meat;
     }
 
@@ -94,30 +94,50 @@ public class Sandwich {
     }
 
     public void addMeat(String meats) {
-        meat.add(meats);
+        this.meat = meats;
     }
 
     public double calculatePrice() {
-        return 0;
+        double basePrice;
+
+        switch (size) {
+            case "4\"": basePrice = 5.0;
+            break;
+            case "8\"": basePrice = 7.0;
+            break;
+            case "12\"": basePrice = 9.0;
+            break;
+            default:
+                basePrice = 7.0; break;
+        }
+
+        basePrice += extraMeat * 1.5;  // each extra meat $1.50
+        basePrice += extraCheese * 1.0;  // each extra cheese $1.00
+
+        return basePrice;
+
     }
 
     public void addCheese(String cheese) {
+        this.cheese.add(cheese);
     }
 
-    public void addMeat(int extraMeat) {
-    }
 
     public void addToppings(String toppings) {
+        this.toppings.add(toppings);
     }
 
     public void addSauce(String sauce) {
+        this.sauce.add(sauce);
     }
 
 
-    public void addExtraMeat(String extraMeat) {
+    public void addExtraMeat(int extraMeat) {
+        this.extraMeat += extraMeat;
     }
 
-    public void addExtraCheese(String extraCheese) {
+    public void addExtraCheese(int extraCheese) {
+        this.extraCheese += extraCheese;
     }
 }
 

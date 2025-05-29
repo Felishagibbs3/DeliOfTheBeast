@@ -8,8 +8,11 @@ public class HomeScreen {
         Scanner scanner = new Scanner(System.in);
 
         while (running) {
-            System.out.println("Welcome to Deli of the Beast!");
-            System.out.println("Ready to Feast? Let's get started!");
+            System.out.println("--------------------------------------");
+            System.out.println("Welcome to Deli of the BEAST!");
+            System.out.println("--------------------------------------");
+            System.out.println("READY TO FEAST?! LET'S GET STARTED!");
+            System.out.println("--------------------------------------");
             System.out.println("1. New Order");
             System.out.println("0. Exit");
             String choice = scanner.nextLine();

@@ -49,8 +49,8 @@ public class Order {
     public double totalPrice(){
         double total = 0.0;
 
-        for (Sandwich s : sandwiches){
-            total += s.calculatePrice();
+        for (Sandwich sandwich : sandwiches){
+            total += sandwich.calculatePrice();
         }
         if (drink != null) {
             total += drink.getPrice();
@@ -61,3 +61,5 @@ public class Order {
         return total;
     }
 }
+
+
