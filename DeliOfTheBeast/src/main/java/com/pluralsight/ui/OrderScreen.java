@@ -167,30 +167,27 @@ public class OrderScreen {
 
     private void createReceipt(Order order) {
         try (BufferedWriter receipt = new BufferedWriter(new FileWriter("src/main/resources/receipt.csv", true))) {
-            receipt.write("----- Your receipt from DeliOfTheBeast -----");
+            receipt.write("\n" + "----- Your receipt from DeliOfTheBeast -----" + "\n");
 
 
             for (Sandwich s : order.getSandwiches()) {
-                receipt.write("  Meat: " + s.getMeat() + "\n");
+                receipt.write(" Meat: " + s.getMeat() + "\n");
                 receipt.write(" Cheese " + s.getCheese() + "\n");
-                receipt.write(" Extras - Meat: " + s.getExtraMeat() + ", Cheese: " + s.getExtraCheese() + "\n");
+                receipt.write(" Extras - Meat: " + s.getExtraMeat() + " " + ", Cheese: " + s.getExtraCheese() + "\n");
                 receipt.write(" Toppings:  " + s.getToppings() + "\n");
                 receipt.write(" Sauces:  " + s.getSauce() + "\n");
-                receipt.write(" Toasted: " + s.isToasted() + "Yes :  No" + "\n");
-                receipt.write(" Total Price :  $" + s.calculatePrice());
+                receipt.write(" Toasted: " + s.isToasted()  + "\n");
+
 
             }
             if (order.getDrink() != null) {
-                receipt.write("Drink:  " + order.getDrink().getSize() + order.getDrink().getFlavor() + order.getDrink().getPrice());
+                receipt.write(" Drink:  " + order.getDrink().getSize() + " " + "$" +order.getDrink().getPrice() + "\n");
 
             }
             if (order.getChips() != null) {
-                receipt.write("Chips:   " + order.getChips().getType() + order.getChips().getPrice());
+                receipt.write(" Chips:   " + order.getChips().getType() + " " + "$" + order.getChips().getPrice() + "\n");
             }
-            receipt.write("Total:  " + order.totalPrice());
-
-
-
+            receipt.write(" Total:  " + order.totalPrice());
 
 
         } catch (IOException e) {

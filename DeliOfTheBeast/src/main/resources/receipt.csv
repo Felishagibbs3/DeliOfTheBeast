@@ -1,19 +1,12 @@
------ Your receipt from DeliOfTheBeast -----  Meat: Steak
+
+----- Your receipt from DeliOfTheBeast -----
+ Meat: Ham
  Cheese [Swiss]
- Extras - Meat: 1, Cheese: 0
- Toppings:  [Peppers, Onions, Lettuce]
+ Extras - Meat: 0 , Cheese: 0
+ Toppings:  [Lettuce, Tomatoes, Guac]
  Sauces:  [Vinaigrette]
- Toasted: trueYes :  No
- Total Price :  $6.5Drink:  Mediumnull2.5Chips:   Lays1.5Total:  10.5----- Your receipt from DeliOfTheBeast -----  Meat: Chicken
- Cheese [Swiss]
- Extras - Meat: 2, Cheese: 0
- Toppings:  [Lettuce, Guac]
- Sauces:  [Ranch]
- Toasted: trueYes :  No
- Total Price :  $10.0Drink:  Largenull3.0Total:  13.0----- Your receipt from DeliOfTheBeast -----  Meat: Ham
- Cheese [American]
- Extras - Meat: 0, Cheese: 0
- Toppings:  [Lettuce, Onion, Tomatoes]
- Sauces:  [Mayo]
- Toasted: trueYes :  No
- Total Price :  $7.0Total:  7.0
+ Toasted: false
+Drink:  Mediumnull2.5Total:  11.5
+----- Your receipt from DeliOfTheBeast -----
+ Drink:  Medium 2.5
+Chips:   Doritos 1.5 Total:  4.0
