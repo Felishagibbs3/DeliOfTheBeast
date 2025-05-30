@@ -13,6 +13,9 @@ import java.util.Scanner;
 public class OrderScreen {
     private Scanner scanner = new Scanner(System.in);
 
+    //using a scanner to gather customer's choice and began a start order method that
+    //comes up after selecting '1' on Home Screen
+
     public Sandwich startOrder() {
         Order order = new Order();
 
@@ -24,9 +27,12 @@ public class OrderScreen {
             System.out.println(" 2. Add Drink ");
             System.out.println(" 3. Add Chips ");
             System.out.println(" 4. Checkout ");
+            System.out.println(" 5. Signature Sandwich Meals ");
             System.out.println(" 0. Cancel my Order ");
 
             String choice = scanner.nextLine();
+
+            //using the switch statements to offer an effective way to navigate through choice options
 
             switch (choice) {
                 case "1":
@@ -47,6 +53,11 @@ public class OrderScreen {
                     checkOut(order);
                     ordering = false;
                     break;
+                case "5":
+                    Sandwich signature = selectSignatureSandwich();
+                    order.addSandwich(signature);
+                    System.out.println("Signature Sandwich has been added! Current Total:  $" + order.totalPrice());
+                    break;
                 case "0":
                     System.out.println("Order canceled.");
                     ordering = false;
@@ -59,6 +70,63 @@ public class OrderScreen {
         return null;
 
     }
+    // method for creating the signature sandwich options,
+    // also utilizing a switch statement to make for easier selection
+
+    private Sandwich selectSignatureSandwich() {
+        System.out.println("Choose your Signature Sandwich:");
+        System.out.println("1. Feed the Beast (Steak, Cheddar, Jalapenos, Chipotle Mayo)");
+        System.out.println("2. Home in the Garden (Wrap, Swiss, Lettuce, Cucumbers, Tomatoes, Vinaigrette)");
+        System.out.println("3. Showdown in Italy (Salami, Provolone, Peppers, Italian Dressing)");
+
+        String choice = scanner.nextLine();
+        Sandwich sandwich;
+        // each case breaks down how the signature sandwich will be created
+        // from size of sandiwch, toppings, meat, cheese, and sauces/dressings
+
+        switch (choice) {
+            case "1":
+                sandwich = new Sandwich("White", "12\"");
+                sandwich.setMeat("Steak");
+                sandwich.addCheese("Cheddar");
+                sandwich.addToppings("Jalapenos");
+                sandwich.addSauce("Chipotle Mayo");
+                sandwich.setToasted(true);
+                break;
+            case "2":
+                sandwich = new Sandwich("Wrap", "8\"");
+                sandwich.setMeat("None");
+                sandwich.addCheese("Swiss");
+                sandwich.addToppings("Lettuce");
+                sandwich.addToppings("Cucumbers");
+                sandwich.addToppings("Tomatoes");
+                sandwich.addSauce("Vinaigrette");
+                sandwich.setToasted(false);
+                break;
+            case "3":
+                sandwich = new Sandwich("Wheat", "12\"");
+                sandwich.setMeat("Salami");
+                sandwich.addCheese("Provolone");
+                sandwich.addToppings("Peppers");
+                sandwich.addSauce("Italian Dressing");
+                sandwich.setToasted(true);
+                break;
+            default:
+                System.out.println("Invalid choice, defaulting to Well Balanced Beast.");
+                sandwich = new Sandwich("Wrap", "8\"");
+                sandwich.setMeat("Chicken");
+                sandwich.addCheese("Swiss");
+                sandwich.addToppings("Tomatoes");
+                sandwich.addToppings("Peppers");
+                sandwich.addToppings("Lettuce");
+                sandwich.addSauce("Vinaigrette");
+                sandwich.setToasted(false);
+                break;
+        }
+
+        return sandwich;
+    }
+    // this method is for builiding a Create Your Own Style Sandiwch
 
     private Sandwich buildSandwich () {
         System.out.println("Would you like White, Wheat, Rye, or a Wrap?");
@@ -73,6 +141,8 @@ public class OrderScreen {
         System.out.println("Steak | Ham | Salami | Roast Beef | Chicken | Bacon");
         String meat = scanner.nextLine();
         sandwich.setMeat(meat);
+        //when adding extra, use an int to add the number of meat they want to add
+        // ex: extra steak = 1x extra or 2x extra
 
         System.out.println("Add extra meats one at a time (type 'done' to finish or skip):");
         while (true) {
@@ -90,6 +160,9 @@ public class OrderScreen {
         System.out.println("Let's add some cheese. Would you like American, Provolone, Cheddar, or Swiss?");
         String cheese = scanner.nextLine();
         sandwich.addCheese(cheese);
+
+        // same method applies here for cheese.
+        // using int to display the number of how much extra cheese they'd like
 
         System.out.println("Add extra cheeses one at a time (Press 'done' to finish or skip):");
         while (true) {
@@ -122,6 +195,8 @@ public class OrderScreen {
                 break;
             sandwich.addSauce(sauce);
         }
+        //using a boolean to define if it is toasted or not,
+        // and will return either true or false on receipt
 
         System.out.println("Would you like us to toast your sandwich? (yes/no)");
         String toasted = scanner.nextLine();
@@ -136,11 +211,11 @@ public class OrderScreen {
         System.out.println("Ready to checkout?");
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Yes")) {
-            createReceipt(order);
 
         } else {
             System.out.println("Order has been canceled");
         }
+        createReceipt(order);
 
 
         System.out.println("Your total is:  $" + total);
@@ -171,6 +246,7 @@ public class OrderScreen {
 
 
             for (Sandwich s : order.getSandwiches()) {
+                receipt.write(" Signature Sandwich: " + s.isSignature + "\n");
                 receipt.write(" Meat: " + s.getMeat() + "\n");
                 receipt.write(" Cheese " + s.getCheese() + "\n");
                 receipt.write(" Extras - Meat: " + s.getExtraMeat() + " " + ", Cheese: " + s.getExtraCheese() + "\n");

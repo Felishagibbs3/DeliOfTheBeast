@@ -7,6 +7,8 @@ public class HomeScreen {
         boolean running = true;
         Scanner scanner = new Scanner(System.in);
 
+        //Displays opening menu when entering store
+
         while (running) {
             System.out.println("--------------------------------------");
             System.out.println("Welcome to Deli of the BEAST!");
