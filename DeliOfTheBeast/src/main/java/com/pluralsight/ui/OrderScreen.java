@@ -92,6 +92,7 @@ public class OrderScreen {
                 sandwich.addToppings("Jalapenos");
                 sandwich.addSauce("Chipotle Mayo");
                 sandwich.setToasted(true);
+                sandwich.setSignature(true);
                 break;
             case "2":
                 sandwich = new Sandwich("Wrap", "8\"");
@@ -102,6 +103,7 @@ public class OrderScreen {
                 sandwich.addToppings("Tomatoes");
                 sandwich.addSauce("Vinaigrette");
                 sandwich.setToasted(false);
+                sandwich.setSignature(true);
                 break;
             case "3":
                 sandwich = new Sandwich("Wheat", "12\"");
@@ -109,6 +111,7 @@ public class OrderScreen {
                 sandwich.addCheese("Provolone");
                 sandwich.addToppings("Peppers");
                 sandwich.addSauce("Italian Dressing");
+                sandwich.setSignature(true);
                 sandwich.setToasted(true);
                 break;
             default:
@@ -126,7 +129,7 @@ public class OrderScreen {
 
         return sandwich;
     }
-    // this method is for builiding a Create Your Own Style Sandiwch
+    // this method is for building a Create Your Own Style Sandwich
 
     private Sandwich buildSandwich () {
         System.out.println("Would you like White, Wheat, Rye, or a Wrap?");
@@ -246,7 +249,7 @@ public class OrderScreen {
 
 
             for (Sandwich s : order.getSandwiches()) {
-                receipt.write(" Signature Sandwich: " + s.isSignature + "\n");
+                receipt.write(" Signature Sandwich: " + s.isSignature() + "\n");
                 receipt.write(" Meat: " + s.getMeat() + "\n");
                 receipt.write(" Cheese " + s.getCheese() + "\n");
                 receipt.write(" Extras - Meat: " + s.getExtraMeat() + " " + ", Cheese: " + s.getExtraCheese() + "\n");

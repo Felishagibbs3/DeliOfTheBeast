@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich {
+    public boolean signature;
     private String bread;
     private String size;
     private boolean toasted;
@@ -28,6 +29,18 @@ public class Sandwich {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public Sandwich(boolean isSignature) {
+        this.signature = isSignature;
+    }
+
+    public boolean isSignature() {
+        return signature;
+    }
+
+    public void setSignature(boolean signature) {
+        this.signature = signature;
     }
 
     public boolean isToasted() {
@@ -89,6 +102,7 @@ public class Sandwich {
     public Sandwich(String bread, String size) {
         this.bread = bread;
         this.size = size;
+        this.signature = false;
 
 
     }
