@@ -18,6 +18,7 @@ public class HomeScreen {
             System.out.println("1. New Order");
             System.out.println("0. Exit");
             String choice = scanner.nextLine();
+            // if customer selects 1, you will be taken to the ordering screen to place the order
 
             if (choice.equals("1")) new OrderScreen().startOrder();
             else if (choice.equals("0"))

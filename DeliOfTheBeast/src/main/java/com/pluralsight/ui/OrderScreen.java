@@ -18,6 +18,8 @@ public class OrderScreen {
 
     public Sandwich startOrder() {
         Order order = new Order();
+        // ordering screen that comes up after selecting 1 on the home screen
+        // boolean for ordering process to cancel if no longer ordering, or 'false'
 
         boolean ordering = true;
         while (ordering) {
@@ -82,7 +84,7 @@ public class OrderScreen {
         String choice = scanner.nextLine();
         Sandwich sandwich;
         // each case breaks down how the signature sandwich will be created
-        // from size of sandiwch, toppings, meat, cheese, and sauces/dressings
+        // from size of sandwich, toppings, meat, cheese, and sauces/dressings
 
         switch (choice) {
             case "1":
@@ -149,10 +151,14 @@ public class OrderScreen {
 
         System.out.println("Add extra meats one at a time (type 'done' to finish or skip):");
         while (true) {
+            // prompts customer to add extra meats if they'd like
+            // prompts a 'done' command in order to continue through ordering loop
             String inputExtra = scanner.nextLine();
             if (inputExtra.equalsIgnoreCase("done") || inputExtra.equals("0"))
                 break;
             try {
+                //they can enter the number quantity of extra meats they'd like to include
+                // uses parse to convert the string into an integer amount since meat is a string
                 int extraMeat = Integer.parseInt(inputExtra);
                 sandwich.addExtraMeat(extraMeat);
             } catch (NumberFormatException e) {
@@ -166,10 +172,13 @@ public class OrderScreen {
 
         // same method applies here for cheese.
         // using int to display the number of how much extra cheese they'd like
+        //ignore case to bypass the uppercase and still pass through to next sequence of loop
 
         System.out.println("Add extra cheeses one at a time (Press 'done' to finish or skip):");
         while (true) {
             String inputExtra = scanner.nextLine();
+            //the "| |" is an expression of using OR.
+            // used to combine boolean expressions and will return true if 1 of the expressions are true
             if (inputExtra.equalsIgnoreCase("done") || inputExtra.equals("0"))
                 break;
             try {
@@ -214,6 +223,7 @@ public class OrderScreen {
         System.out.println("Ready to checkout?");
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Yes")) {
+            //only set to say yes, otherwise order will be cancelled and will have to start over
 
         } else {
             System.out.println("Order has been canceled");
