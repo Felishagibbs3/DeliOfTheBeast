@@ -48,3 +48,23 @@
  Sauces:  [Italian Dressing]
  Toasted: true
  Total:  9.0
+----- Your receipt from DeliOfTheBeast -----
+ Signature Sandwich: false
+ Meat: Ham
+ Cheese [Swiss]
+ Extras - Meat: 1 , Cheese: 0
+ Toppings:  [Lettuce, Tomatoes, Guac]
+ Sauces:  [Vinaigrette]
+ Toasted: true
+ Drink:  Large $3.0
+ Chips:   Doritos $1.5
+ Total:  15.0
+----- Your receipt from DeliOfTheBeast -----
+ Signature Sandwich: true
+ Meat: None
+ Cheese [Swiss]
+ Extras - Meat: 0 , Cheese: 0
+ Toppings:  [Lettuce, Cucumbers, Tomatoes]
+ Sauces:  [Vinaigrette]
+ Toasted: false
+ Total:  7.0
